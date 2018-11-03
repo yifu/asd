@@ -57,7 +57,7 @@ func (l *List) Clear() {
 	l.head = nil
 }
 
-// Predicate is the type of functin which return true when the value v satisfy the test.
+// Predicate is the type of function which return true when the value v satisfy the test.
 type Predicate func(v interface{}) bool
 
 // Search for an element given the provided predicate
