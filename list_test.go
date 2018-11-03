@@ -48,10 +48,13 @@ func collectValues(l List) []interface{} {
 func cmp(t *testing.T, result []interface{}, expected []int) {
 	if len(result) != len(expected) {
 		t.Error("Bad len. Expecting ", expected, "got ", result)
+		return
 	}
+
 	for i := 0; i < len(expected); i++ {
 		if result[i] != expected[i] {
 			t.Error("Bad value at ", i, ". Expecting ", expected, "got ", result)
+			return
 		}
 	}
 }
