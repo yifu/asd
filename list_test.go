@@ -24,6 +24,15 @@ func TestAppend_nilRoot(t *testing.T) {
 	expected := []int{4}
 	cmp(t, result, expected)
 }
+
+func TestPush_List(t *testing.T) {
+	var l List
+	l.Push(1)
+	cmp(t, collectValues(l), []int{1})
+	l.Push(2)
+	cmp(t, collectValues(l), []int{2, 1})
+}
+
 func TestInsert(t *testing.T) {
 	var l List
 

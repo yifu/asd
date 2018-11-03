@@ -26,6 +26,11 @@ func (l *List) Append(v interface{}) {
 	p.next = &Node{v, nil}
 }
 
+// Push pushes a value at the front of the list.
+func (l *List) Push(v interface{}) {
+	l.head = &Node{v, l.head}
+}
+
 // Insert inserts an element at position pos.
 func (l *List) Insert(pos int, v interface{}) error {
 	if pos == 0 {
