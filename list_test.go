@@ -67,6 +67,34 @@ func TestClear(t *testing.T) {
 	cmp(t, collectValues(l), []int{})
 }
 
+func TestSearch(t *testing.T) {
+	var l List
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+	l.Append(4)
+	l.Append(5)
+	l.Append(6)
+
+	cmp(t, collectValues(l), []int{1, 2, 3, 4, 5, 6})
+
+	search := func(val int) (*Node, error) {
+		return l.Search(func(v interface{}) bool {
+			return v == val
+		})
+	}
+
+	expectedResult := 4
+	if result, err := search(expectedResult); err != nil || result.value != expectedResult {
+		t.Fail()
+	}
+
+	if result, err := search(42); err == nil {
+		t.Log("result", result, "err", err)
+		t.Fail()
+	}
+}
+
 func collectValues(l List) []interface{} {
 	values := make([]interface{}, 0)
 

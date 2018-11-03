@@ -51,3 +51,18 @@ func (l *List) Insert(pos int, v interface{}) error {
 func (l *List) Clear() {
 	l.head = nil
 }
+
+// Predicate is the type of functin which return true when the value v satisfy the test.
+type Predicate func(v interface{}) bool
+
+// Search for an element given the provided predicate
+func (l *List) Search(pred Predicate) (*Node, error) {
+	p := l.head
+	for p != nil {
+		if pred(p.value) {
+			return p, nil
+		}
+		p = p.next
+	}
+	return nil, fmt.Errorf("Value not found")
+}
