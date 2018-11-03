@@ -28,22 +28,22 @@ func (l *List) Append(v interface{}) {
 
 // Insert inserts an element at position pos.
 func (l *List) Insert(pos int, v interface{}) error {
-	if l.head == nil {
-		if pos != 0 {
-			return fmt.Errorf("%v is not a valid position", pos)
-		}
-		l.head = &Node{v, nil}
+	if pos == 0 {
+		l.head = &Node{v, l.head}
 		return nil
 	}
+
 	p := l.head
-	var i int
-	for i = 0; i < pos && p.next != nil; i++ {
+	i := pos
+	for i != 0 {
+		if p.next == nil {
+			return fmt.Errorf("%v is not a valid position for a %v long list", pos, pos-i)
+		}
 		p = p.next
+		i--
 	}
-	if i != pos {
-		return fmt.Errorf("%v is not a valid position", pos)
-	}
-	p.next = &Node{v, nil}
+
+	p.next = &Node{v, p.next}
 	return nil
 }
 
