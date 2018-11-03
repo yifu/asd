@@ -34,7 +34,7 @@ func (l *List) Insert(pos int, v interface{}) error {
 	}
 
 	p := l.head
-	i := pos
+	i := pos - 1
 	for i != 0 {
 		if p.next == nil {
 			return fmt.Errorf("%v is not a valid position for a %v long list", pos, pos-i)
