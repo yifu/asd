@@ -4,15 +4,13 @@ import (
 	"testing"
 )
 
-func collectValues(root *List) []interface{} {
+func collectValues(l List) []interface{} {
 	values := make([]interface{}, 0)
-	if root == nil {
-		return values
-	}
 
-	for root != nil {
-		values = append(values, root.value)
-		root = root.next
+	p := l.head
+	for p != nil {
+		values = append(values, p.value)
+		p = p.next
 	}
 	return values
 }
@@ -28,23 +26,23 @@ func cmp(t *testing.T, result []interface{}, expected []int) {
 	}
 }
 
-func TestInsert(t *testing.T) {
-	root := new(List)
-	*root = List{3, nil}
-	Insert(&root, 5)
+func TestAppend(t *testing.T) {
+	var l List
+	l.Append(3)
+	l.Append(5)
 
-	var result = collectValues(root)
+	var result = collectValues(l)
 	expected := []int{3, 5}
 	cmp(t, result, expected)
 
 	t.Log("values", result)
 }
 
-func TestInsert_nilRoot(t *testing.T) {
-	var root *List
-	Insert(&root, 4)
+func TestAppend_nilRoot(t *testing.T) {
+	var l List
+	l.Append(4)
 
-	var result = collectValues(root)
+	var result = collectValues(l)
 	expected := []int{4}
 	cmp(t, result, expected)
 }

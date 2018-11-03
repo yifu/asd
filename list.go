@@ -1,18 +1,25 @@
 package asd
 
-// List implements a single list structure.
-type List struct {
+// Node implements a Node in a linked list.
+type Node struct {
 	value interface{}
-	next  *List
+	next  *Node
 }
 
-// Insert does insert a new node.
-func Insert(head **List, v interface{}) {
-	if *head == nil {
-		*head = new(List)
-		*(*head) = List{v, nil}
+// List implement a linked list.
+type List struct {
+	head *Node
+}
+
+// Append does append a new node at the end of the list.
+func (l *List) Append(v interface{}) {
+	if l.head == nil {
+		l.head = &Node{v, nil}
 		return
 	}
-	node := List{v, (*head).next}
-	(*head).next = &node
+	p := l.head
+	for p.next != nil {
+		p = p.next
+	}
+	p.next = &Node{v, nil}
 }
