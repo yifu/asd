@@ -46,3 +46,8 @@ func (l *List) Insert(pos int, v interface{}) error {
 	p.next = &Node{v, nil}
 	return nil
 }
+
+// Clear clears a list.
+func (l *List) Clear() {
+	l.head = nil
+}

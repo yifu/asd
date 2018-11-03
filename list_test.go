@@ -24,7 +24,6 @@ func TestAppend_nilRoot(t *testing.T) {
 	expected := []int{4}
 	cmp(t, result, expected)
 }
-
 func TestInsert(t *testing.T) {
 	var l List
 
@@ -32,6 +31,20 @@ func TestInsert(t *testing.T) {
 	var result = collectValues(l)
 	expected := []int{42}
 	cmp(t, result, expected)
+}
+
+func TestClear(t *testing.T) {
+	var l List
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+
+	var result = collectValues(l)
+	var expected = []int{1, 2, 3}
+	cmp(t, result, expected)
+
+	l.Clear()
+	cmp(t, collectValues(l), []int{})
 }
 
 func collectValues(l List) []interface{} {
