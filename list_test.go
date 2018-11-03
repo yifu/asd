@@ -9,7 +9,7 @@ func TestAppend(t *testing.T) {
 	l.Append(3)
 	l.Append(5)
 
-	var result = collectValues(l)
+	result := collectValues(l)
 	expected := []int{3, 5}
 	cmp(t, result, expected)
 
@@ -20,7 +20,7 @@ func TestAppend_nilRoot(t *testing.T) {
 	var l List
 	l.Append(4)
 
-	var result = collectValues(l)
+	result := collectValues(l)
 	expected := []int{4}
 	cmp(t, result, expected)
 }
@@ -28,7 +28,7 @@ func TestInsert(t *testing.T) {
 	var l List
 
 	l.Insert(0, 42)
-	var result = collectValues(l)
+	result := collectValues(l)
 	expected := []int{42}
 	cmp(t, result, expected)
 }
