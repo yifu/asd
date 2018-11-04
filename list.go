@@ -13,6 +13,15 @@ type List struct {
 	head *Node
 }
 
+// Visit each node and apply the function.
+func (l *List) Visit(f func(n *Node)) {
+	p := l.head
+	for p != nil {
+		f(p)
+		p = p.next
+	}
+}
+
 // Append does append a new node at the end of the list.
 func (l *List) Append(v interface{}) {
 	if l.head == nil {
