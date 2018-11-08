@@ -60,6 +60,26 @@ func TestInsert(t *testing.T) {
 	result = collectValues(l)
 	expected = []int{41, 2, 1, 0, 42}
 	cmp(t, result, expected)
+
+	l.Insert(2, 45)
+	result = collectValues(l)
+	expected = []int{41, 2, 45, 1, 0, 42}
+	cmp(t, result, expected)
+
+	l.Insert(6, 33)
+	result = collectValues(l)
+	expected = []int{41, 2, 45, 1, 0, 42, 33}
+	cmp(t, result, expected)
+
+	err := l.Insert(8, 66)
+	if err != nil {
+		t.Log("err: ", err)
+	} else {
+		t.Fail()
+	}
+	result = collectValues(l)
+	expected = []int{41, 2, 45, 1, 0, 42, 33}
+	cmp(t, result, expected)
 }
 
 func TestClear(t *testing.T) {
