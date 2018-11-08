@@ -16,6 +16,17 @@ func TestAppend(t *testing.T) {
 	t.Log("values", result)
 }
 
+func TestVariadicAppend(t *testing.T) {
+	var l List
+	l.Append(3, 5)
+
+	result := collectValues(l)
+	expected := []int{3, 5}
+	cmp(t, result, expected)
+
+	t.Log("values", result)
+}
+
 func TestAppend_nilRoot(t *testing.T) {
 	var l List
 	l.Append(4)
