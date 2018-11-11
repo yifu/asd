@@ -135,6 +135,18 @@ func TestSearch(t *testing.T) {
 	}
 }
 
+func TestVisit(t *testing.T) {
+	var l List
+	l.Append(3, 5)
+
+	result := make([]int, 0)
+	l.Visit(func(n *Node) {
+		result = append(result, n.value.(int))
+	})
+
+	cmp(t, collectValues(l), result)
+}
+
 func collectValues(l List) []interface{} {
 	values := make([]interface{}, 0)
 
