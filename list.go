@@ -25,16 +25,16 @@ func (l *List) Visit(f func(n *Node)) {
 // Append does append a new node at the end of the list.
 func (l *List) Append(values ...interface{}) {
 	for _, v := range values {
-	if l.head == nil {
-		l.head = &Node{v, nil}
+		if l.head == nil {
+			l.head = &Node{v, nil}
 			continue
+		}
+		p := l.head
+		for p.next != nil {
+			p = p.next
+		}
+		p.next = &Node{v, nil}
 	}
-	p := l.head
-	for p.next != nil {
-		p = p.next
-	}
-	p.next = &Node{v, nil}
-}
 }
 
 // Push pushes a value at the front of the list.
